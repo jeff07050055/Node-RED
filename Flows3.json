@@ -1,0 +1,92 @@
+[
+    {
+        "id": "59b7ed9b.0fb924",
+        "type": "tab",
+        "label": "流程3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1e644cb.0734cb3",
+        "type": "inject",
+        "z": "59b7ed9b.0fb924",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "60200bac.c29f04"
+            ]
+        ]
+    },
+    {
+        "id": "60200bac.c29f04",
+        "type": "function",
+        "z": "59b7ed9b.0fb924",
+        "name": "",
+        "func": "msg.headers={\n    deviceKey: \"5so6ld7ois0SBmii\"\n    };\nmsg.payload= \"Temperature,,24.3\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "694641ec.97d2b"
+            ]
+        ]
+    },
+    {
+        "id": "694641ec.97d2b",
+        "type": "http request",
+        "z": "59b7ed9b.0fb924",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "https://api.mediatek.com/mcs/v2/devices/DEURqOut/datapoints.csv",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 500,
+        "y": 140,
+        "wires": [
+            [
+                "470018ff.f0d8e8",
+                "ff5db4f6.5a5d78"
+            ]
+        ]
+    },
+    {
+        "id": "470018ff.f0d8e8",
+        "type": "http response",
+        "z": "59b7ed9b.0fb924",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ff5db4f6.5a5d78",
+        "type": "debug",
+        "z": "59b7ed9b.0fb924",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 300,
+        "wires": []
+    }
+]
