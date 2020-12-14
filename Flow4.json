@@ -1,0 +1,101 @@
+[
+    {
+        "id": "530ae346.64c21c",
+        "type": "tab",
+        "label": "流程4",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "33a0e74.32fc418",
+        "type": "http in",
+        "z": "530ae346.64c21c",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 80,
+        "wires": [
+            [
+                "90a2371.3e04ac8"
+            ]
+        ]
+    },
+    {
+        "id": "a5ab2eef.bec97",
+        "type": "rpi-gpio in",
+        "z": "530ae346.64c21c",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 70,
+        "y": 240,
+        "wires": [
+            [
+                "12c2661e.db704a"
+            ]
+        ]
+    },
+    {
+        "id": "12c2661e.db704a",
+        "type": "function",
+        "z": "530ae346.64c21c",
+        "name": "Set GPIO",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 220,
+        "wires": [
+            [
+                "263e9418.2e99cc"
+            ]
+        ]
+    },
+    {
+        "id": "90a2371.3e04ac8",
+        "type": "function",
+        "z": "530ae346.64c21c",
+        "name": "Get GPIO",
+        "func": "msg.payload = global.get(\"GPIO\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 280,
+        "y": 80,
+        "wires": [
+            [
+                "8c1a0c92.ce39a",
+                "263e9418.2e99cc"
+            ]
+        ]
+    },
+    {
+        "id": "263e9418.2e99cc",
+        "type": "debug",
+        "z": "530ae346.64c21c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8c1a0c92.ce39a",
+        "type": "http response",
+        "z": "530ae346.64c21c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 640,
+        "y": 100,
+        "wires": []
+    }
+]
